@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ListView from './ListView';
+import MapContainer from './MapContainer';
 
 class App extends Component {
+  state = {
+    query: '',
+  }
+
+  updateQuery = (userInput) => {
+    this.setState({ query: userInput });
+  }
+
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1>Featured Neighborhood: Nashville</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="sidebar container">
+          <div className="location-filter">
+            <input type="text" placeholder="Filter locations by..."
+              value={this.state.query}
+              onChange={(event) => this.updateQuery(event.target.value)} />
+          </div>
+          <ListView />
+        </div>
+        <MapContainer />
       </div>
     );
   }
