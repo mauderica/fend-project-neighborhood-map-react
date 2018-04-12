@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  width: 100%;
 }
 
 .App-header {
@@ -7,4 +8,44 @@
   height: 70px;
   padding: 20px;
   color: white;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Sidebar Styles */
+
+.sidebar {
+  width: 25%;
+}
+
+.location-filter {
+  width: 100%;
+  background-color: lightcoral;
+  height: 30px;
+  padding: 10px;
+}
+
+.location-filter input {
+  font-size: 1em;
+  padding: 5px;
+  border: 0;
+}
+
+/* ListView Styles */
+
+.list-wrapper {
+  width: 100%;
+  background-color: lightblue;
+  height: 100vh;
+}
+
+/* MapContainer Styles */
+
+.map-wrapper {
+  width: 75%;
+  background-color: lightgreen;
 }
