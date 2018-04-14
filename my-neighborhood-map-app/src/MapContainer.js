@@ -14,6 +14,7 @@ export default class MapContainer extends Component {
     // Note: The following resources were consulted to develop the code in the function below:
     // https://medium.com/front-end-hacking/simplified-google-maps-api-in-a-react-app-46981441d2c9
     // https://developers.google.com/maps/documentation/javascript/tutorial
+    // https://developers.google.com/maps/documentation/javascript/infowindows
     loadMap() {
         if (this.props && this.props.google) {
             const { google } = this.props;
@@ -26,14 +27,22 @@ export default class MapContainer extends Component {
                 mapTypeId: 'roadmap',
             }
 
-            this.map = new google.maps.Map(node, mapConfig);
+            const map = new google.maps.Map(node, mapConfig);
+
+            // Create InfoWindow:
+            let infoWindow = new google.maps.InfoWindow({
+                content: "Sample Info About Restaurant :)"
+            });
 
             // Add Markers to Map:
             this.props.locations.forEach(location => {
                 const marker = new google.maps.Marker({
                     position: location.location,
-                    map: this.map,
+                    map: map,
                     title: location.name
+                });
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
                 });
             })
 
