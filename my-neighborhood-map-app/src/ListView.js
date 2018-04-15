@@ -7,7 +7,9 @@ class ListView extends Component {
       <div className="list-wrapper">
         <ul>
           {this.props.locations.map((location, index) => (
-            <li key={index}>{location.name}</li>
+            <li key={index}>
+              <p>{location.name}</p>
+            </li>
           ))}
         </ul>
       </div>
