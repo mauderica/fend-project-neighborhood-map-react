@@ -32,7 +32,7 @@ export default class App extends Component {
               value={this.state.query}
               onChange={(event) => this.updateQuery(event.target.value)} />
           </div>
-          <ListView />
+          <ListView locations={this.state.locations} />
         </div>
         <MapContainer google={this.props.google} locations={this.state.locations} />
       </div>
