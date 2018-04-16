@@ -50,6 +50,7 @@ export class MapContainer extends Component {
                             key={index}
                             title={location.name}
                             position={location.location}
+                            icon={location.icon}
                             onClick={this.onMarkerClick}
                         />
                     ))}
