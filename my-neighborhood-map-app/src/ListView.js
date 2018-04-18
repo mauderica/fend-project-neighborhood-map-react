@@ -13,6 +13,8 @@ export default class ListView extends Component {
             (<ListItem
                 key={index}
                 location={location}
+                selectedLoc={this.props.selectedLoc}
+                selector={this.props.selector}
                 onLocSelect={(location, selector) => this.props.onLocSelect(location, selector)}
               />)
           ))}

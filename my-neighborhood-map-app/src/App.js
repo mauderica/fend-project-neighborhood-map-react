@@ -71,6 +71,8 @@ export default class App extends Component {
           </div>
           <ListView
             locations={this.state.locations}
+            selectedLoc={this.state.selectedLoc}
+            selector={this.state.locSelectedFrom}
             onLocSelect={(location, selector) => this.updateSelection(location, selector)}
           />
         </div>

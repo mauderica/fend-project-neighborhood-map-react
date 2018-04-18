@@ -8,8 +8,12 @@ export default class ListItem extends Component {
     }
 
     render() {
+
+        let className = (this.props.location === this.props.selectedLoc && this.props.selector === 'list-item') ?
+                        'li-selected' : '';
+
         return (
-            <li className="list-item" onClick={(event) => { this.onListItemClick(event.target) }}>
+            <li className={className} onClick={(event) => { this.onListItemClick(event.target) }}>
                 <p className="list-location-name">{this.props.location.name}</p>
             </li>
         );
