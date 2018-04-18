@@ -43,6 +43,32 @@
   height: 100vh;
 }
 
+.list-wrapper > ul {
+  text-align: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-wrapper li {
+  padding: 15px 10px 15px 20px;
+}
+
+.list-wrapper p {
+  cursor: default;
+  margin: 5px 0;
+}
+
+.li-selected {
+  background-color: azure;
+}
+
+li:hover {
+  border: 1.5px solid lightcoral;
+  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.75);
+}
+
+
 /* MapContainer Styles */
 
 .map-wrapper {
