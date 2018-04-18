@@ -37,13 +37,9 @@ export class MapContainer extends Component {
         this.props.onLocSelect(props.locationObj, 'marker');
     }
 
-    // onWindowClose = () => {
-    //     this.setState({
-    //         selectedPlace: {},
-    //         activeMarker: {},
-    //         showingInfoWindow: false
-    //     });
-    // }
+    onWindowClose = () => {
+        this.props.onWindowClose();
+    }
 
     render() {
         // const style = {

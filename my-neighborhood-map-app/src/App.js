@@ -53,6 +53,10 @@ export default class App extends Component {
     this.setState({ showingInfoWindow: true });
   }
 
+  closedInfoWindow = () => {
+    this.setState({ showingInfoWindow: false });
+  }
+
   render() {
     return (
       <div className="App container">
@@ -76,6 +80,7 @@ export default class App extends Component {
           selectedLoc={this.state.selectedLoc}
           showingInfoWindow={this.state.showingInfoWindow}
           onLocSelect={(location, selector) => this.updateSelection(location, selector)}
+          onWindowClose={() => this.closedInfoWindow()}
         />
       </div>
     );
