@@ -20,7 +20,7 @@ export class MapContainer extends Component {
             scale: 2,
             strokeColor: "purple",
             strokeWeight: 2,
-            anchor: new this.props.google.maps.Point(11,23),
+            anchor: new this.props.google.maps.Point(11, 23),
         },
         highlightedIcon: {
             path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
@@ -29,7 +29,7 @@ export class MapContainer extends Component {
             scale: 2,
             strokeColor: "chocolate",
             strokeWeight: 2.5,
-            anchor: new this.props.google.maps.Point(11,23),
+            anchor: new this.props.google.maps.Point(11, 23),
         }
     };
 
@@ -48,6 +48,7 @@ export class MapContainer extends Component {
         // }
         const highlightedIcon = this.state.highlightedIcon;
         const defaultIcon = this.state.defaultIcon;
+        const selectedCategory = this.props.selectedCategory;
 
         return (
             <div className="map-wrapper">
@@ -59,19 +60,25 @@ export class MapContainer extends Component {
                     }}
                     zoom={12}>
                     {this.props.locations.map((location, index) => {
+                        let matchCategory = (location.categories.includes(selectedCategory) ||
+                            selectedCategory === 'All' ||
+                            selectedCategory === 'none-disabled');
                         let icon = (location === this.props.selectedLoc) ? highlightedIcon : defaultIcon;
-                        return (<Marker
-                            key={index}
-                            locationObj={location}
-                            title={location.name}
-                            position={location.position}
-                            icon={icon}
-                            onClick={this.onMarkerClick}
-                        />)
+                        return (
+                            matchCategory &&
+                            (<Marker
+                                key={index}
+                                locationObj={location}
+                                title={location.name}
+                                position={location.position}
+                                icon={icon}
+                                onClick={this.onMarkerClick}
+                            />)
+                        )
                     })}
                     <InfoWindow
                         position={this.props.selectedLoc.position}
-                        pixelOffset={new this.props.google.maps.Size(0,-43)}
+                        pixelOffset={new this.props.google.maps.Size(0, -43)}
                         visible={this.props.showingInfoWindow}
                         onClose={this.onWindowClose}>
                         <div>
