@@ -142,8 +142,25 @@ li:hover {
   box-shadow: 0 0px 20px 0 rgba(220, 204, 204, 0.75);
 }
 
+.location-details {
+  background-color: rgb(71, 70, 70);
+  color: lightgray;
+  font-size: 16px;
+  padding: 16px 20px 10px 22px;
+}
 
-/* MapContainer Styles */
+.location-details > div {
+  margin-bottom: 6px;
+}
+
+.details-foursquare {
+  font-size: small;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+
+/* MAP CONTAINER STYLES */
 
 .map-wrapper {
   width: 100%;

@@ -27,6 +27,7 @@ export default class App extends Component {
           'Lunch',
           'Dinner',
         ],
+        venueID: '4b12b802f964a520c28c23e3',
       },
       {
         name: 'Sunflower Cafe',
@@ -35,6 +36,7 @@ export default class App extends Component {
           'Lunch',
           'Dinner',
         ],
+        venueID: '508816fce4b0c4120f2ebdbf',
       },
       {
         name: 'Graze Nashville',
@@ -45,30 +47,32 @@ export default class App extends Component {
           'Dinner',
           'Snack',
         ],
+        venueID: '571d6d3f498e64cbcffe5473',
       },
       {
-        name: 'AVO',
-        position: { lat: 36.1521497, lng: -86.8201611 },
+        name: 'Coco Greens',
+        position: { lat: 36.1520154, lng: -86.80509269999999 },
         categories: [
           'Breakfast',
           'Lunch',
           'Dinner',
           'Snack',
         ],
+        venueID: '557df688498e8d9e5ad9343a',
       },
       {
         name: 'The Wild Muffin',
         position: { lat: 36.129007, lng: -86.90273000000002 },
         categories: 'Snack',
+        venueID: '5197b2aa498e27b18f30344f',
       },
       {
-        name: 'The Southern V Bakery and To-Go Eatery',
-        position: { lat: 36.1804356, lng: -86.80700669999999 },
+        name: 'Vegan Vee',
+        position: { lat: 36.1494261, lng: -86.84185769999999 },
         categories: [
-          'Breakfast',
-          'Lunch',
-          'Dinner',
+          'Snack',
         ],
+        venueID: '5184192ce4b00b75ac879283',
       },
     ],
   }
