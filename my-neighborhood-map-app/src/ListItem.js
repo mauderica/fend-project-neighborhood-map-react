@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LocationDetails from './LocationDetails';
 
 export default class ListItem extends Component {
 
@@ -14,6 +15,12 @@ export default class ListItem extends Component {
         return (
             <li className={className} onClick={(event) => { this.onListItemClick(event.target) }}>
                 <p className="list-location-name">{this.props.location.name}</p>
+                {
+                    isItemSelected &&
+                    <LocationDetails
+                    venueID={this.props.location.venueID}
+                    />
+                }
             </li>
         );
     }
