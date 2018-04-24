@@ -11,7 +11,7 @@ export default class LocationFilter extends Component {
                 <select
                     value={this.props.selectedCategory}
                     onChange={(event) => this.props.onSelectFilter(event.target.value)} >
-                    <option value="none-disabled" disabled>What does your palate desire? ...</option>
+                    <option value="none-disabled" disabled>What do you fancy?</option>
                     {
                         this.props.categories.map((category, index) => (
                             <option key={index} value={category}>{category}</option>
