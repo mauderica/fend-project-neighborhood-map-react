@@ -82,9 +82,15 @@ export default class App extends Component {
   }
 
   updateSelection = (location, selector) => {
-    this.setState({ selectedLoc: location });
-    this.setState({ locSelectedFrom: selector });
-    this.showInfoWindow();
+    if (location === this.state.selectedLoc) {
+      this.closedInfoWindow();
+    } else {
+      this.setState({ selectedLoc: location });
+      this.setState({ locSelectedFrom: selector });
+      if (location !== {} && selector !== '') {
+        this.showInfoWindow();
+      }
+    }
   }
 
   showInfoWindow = () => {
@@ -93,6 +99,9 @@ export default class App extends Component {
 
   closedInfoWindow = () => {
     this.setState({ showingInfoWindow: false });
+    this.updateSelection({}, '');
+  }
+
   toggleOpenSidebar = () => {
     if (this.state.sidebarIsOpen) {
       this.setState({ sidebarIsOpen: false });
