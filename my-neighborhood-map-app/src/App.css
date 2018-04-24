@@ -1,13 +1,13 @@
 .App {
   text-align: center;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 .App-header {
-  background-color: darkgray;
-  height: 70px;
-  padding: 20px;
-  color: white;
+  background-color: rgb(48, 47, 47);
+  height: 110px;
+  color: lightgray;
   width: 100%;
 }
 
@@ -16,31 +16,103 @@
   flex-wrap: wrap;
 }
 
-/* Sidebar Styles */
+.App-header > h1 {
+  width: calc(100% - 105px); /* match total width of .btn-container + padding here */
+  padding-top: 35px;
+  text-align: right;
+  padding-right: 25px;
+  margin: 0;
+}
+
+
+/* HAMBURGER ICON BUTTON STYLES */
+/* Inspired by: https://www.w3schools.com/howto/howto_css_menu_icon.asp */
+
+.btn-container {
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 25px;
+  padding: 10px 25px 10px 20px;
+  height: 40px;
+  background-color: black;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 0px 20px 0 rgba(220, 204, 204, 0.75);
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+
+/* SIDEBAR STYLES */
+/* Resource consulted: https://www.w3schools.com/howto/howto_js_sidenav.asp */
 
 .sidebar {
-  width: 25%;
+  background-color: black;
+  color: lightgray;
+  height: calc(100vh - 20px) !important; /* minus padding-top */
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -300px;
+  overflow: scroll;
+  padding-top: 20px;
+  transition: 0.5s;
+}
+
+.sidebar-open {
+  left: 0;
+  transition: 0.5s;
+}
+
+.sidebar-title {
+  margin-left: 25px;
 }
 
 .location-filter {
   width: 100%;
-  background-color: lightcoral;
-  height: 30px;
-  padding: 10px;
+  margin: 25px 95px 20px 0;
 }
 
-.location-filter input {
-  font-size: 1em;
-  padding: 5px;
+.location-filter select {
+  font-size: 14px;
   border: 0;
 }
 
-/* ListView Styles */
+/* Content to push on Sidebar opening */
+
+.main-content-default {
+  transition: margin-left .5s;
+}
+
+.main-content-pushed {
+  transition: margin-left .5s;
+  margin-left: 300px; /* Match with .sidebar width */
+}
+
+
+/* LISTVIEW STYLES */
 
 .list-wrapper {
   width: 100%;
-  background-color: lightblue;
-  height: 100vh;
+  height: calc(100vh - 153px);
 }
 
 .list-wrapper > ul {
@@ -51,27 +123,182 @@
 }
 
 .list-wrapper li {
-  padding: 15px 10px 15px 20px;
+  padding: 15px 0 15px 0;
+  font-size: 18px;
 }
 
 .list-wrapper p {
   cursor: default;
-  margin: 5px 0;
+  margin: 5px 0 12px 0;
+  padding-left: 22px;
 }
 
 .li-selected {
-  background-color: azure;
+  background-color: rgb(48, 47, 47);
+  color: white;
 }
 
 li:hover {
-  border: 1.5px solid lightcoral;
-  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0px 20px 0 rgba(220, 204, 204, 0.75);
 }
 
 
 /* MapContainer Styles */
 
 .map-wrapper {
-  width: 75%;
-  background-color: lightgreen;
+  width: 100%;
+}
+
+.map-wrapper > div {
+  height: calc(100vh - 110px) !important; /* Match with .App-header height */
+}
+
+.map-wrapper.pushed > div {
+  transition: width .5s;
+  width: calc(100vw - 300px) !important; /* Match with .sidebar width */
+}
+
+
+/* ====================== BREAKPOINT 875px ====================== */
+@media screen and (max-width: 875px) {
+  .App-header {
+    transition: height .5s;
+    height: 90px;
+  }
+  
+  .App-header > h1 {
+    font-size: 30px;
+    width: calc(100% - 78px); /* Match width of .btn-container + padding-right */
+    padding-top: 28px;
+    padding-right: 20px;
+  }
+
+  .btn-container {
+    margin-top: 20px;
+    padding: 6px 15px 5px 15px;
+  }
+
+  .bar1, .bar2, .bar3 {
+    width: 28px;
+  }
+
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-8px, 6px);
+    -ms-transform: rotate(-45deg) translate(-8px, 6px);
+    transform: rotate(-45deg) translate(-8px, 6px);
+  }
+
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-9px, -8px);
+    -ms-transform: rotate(45deg) translate(-9px, -8px);
+    transform: rotate(45deg) translate(-9px, -8px);
+  }
+
+  .sidebar {
+    transition: width .5s;
+    width: 240px;
+    height: calc(100vh - 15px) !important; /* minus padding-top */
+    padding-top: 15px;
+  }
+
+  .sidebar-title {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+
+  .location-filter {
+    transition: margin .5s;
+    margin: 20px 44px 20px 0;
+  }
+
+  .list-wrapper {
+    height: calc(100vh - 143px);
+  }
+
+  .list-wrapper li {
+    font-size: 16px;
+  }
+
+  .main-content-pushed {
+    transition: margin-left .5s;
+    margin-left: 240px; /* Match with .sidebar width */
+  }
+
+  .map-wrapper > div {
+    height: calc(100vh - 90px) !important; /* Match with .App-header height */
+  }
+
+  .map-wrapper.pushed > div {
+    transition: width .5s;
+    width: calc(100vw - 240px) !important; /* Match with .sidebar width */
+  }
+
+}
+
+/* ====================== BREAKPOINT 700px ====================== */
+@media screen and (max-width: 700px) {
+  .App-header > h1 {
+    font-size: 25px;
+    padding-top: 32px;
+  }
+
+}
+
+/* ====================== BREAKPOINT 650px ====================== */
+@media screen and (max-width: 650px) {
+  .App-header > h1 {
+    padding-top: 16px;
+    width: calc(100% - 198px);
+    padding-left: 120px;
+  }
+
+}
+
+/* ====================== BREAKPOINT 545px ====================== */
+@media screen and (max-width: 545px) {
+  .App-header > h1 {
+    font-size: 22px;
+    padding-top: 20px;
+    width: calc(100% - 128px);
+    padding-left: 50px;
+  }
+
+}
+
+/* ====================== BREAKPOINT 460px ====================== */
+@media screen and (max-width: 460px) {
+  .App-header > h1 {
+    width: calc(100% - 123px);
+    padding-right: 15px;
+  }
+  
+  .sidebar {
+    padding-top: 20px;
+    transition: width .5s;
+    width: 220px;
+  }
+
+  .sidebar-title {
+    font-size: 18px;
+  }
+
+  .main-content-pushed {
+    transition: margin-left .5s;
+    margin-left: 220px; /* Match with .sidebar width */
+    overflow-x: hidden;
+  }
+
+  .map-wrapper.pushed > div {
+    transition: width .5s;
+    width: calc(100vw - 220px) !important; /* Match with .sidebar width */
+  }
+
+}
+
+/* ====================== BREAKPOINT 435px ====================== */
+@media screen and (max-width: 435px) {
+  .App-title-hide {
+    visibility: hidden;
+  }
+
 }

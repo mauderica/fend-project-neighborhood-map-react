@@ -42,18 +42,22 @@ export class MapContainer extends Component {
     }
 
     render() {
-        // const style = {
-        //     width: '100%', //'90vw'
-        //     height: '100%' //'75vh'
-        // }
+        const style = {
+            width: '100%',
+            height: '100%',
+        }
         const highlightedIcon = this.state.highlightedIcon;
         const defaultIcon = this.state.defaultIcon;
         const selectedCategory = this.props.selectedCategory;
+        const sidebarIsOpen = this.props.sidebarIsOpen;
+        const mapWrapperClass = (sidebarIsOpen) ?
+            "map-wrapper pushed" :
+            "map-wrapper";
 
         return (
-            <div className="map-wrapper">
+            <div className={mapWrapperClass}>
                 <Map google={this.props.google}
-                    // style={style}
+                    style={style}
                     initialCenter={{
                         lat: 36.158257,
                         lng: -86.77615980000002
