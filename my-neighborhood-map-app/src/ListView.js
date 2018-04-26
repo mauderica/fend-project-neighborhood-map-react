@@ -9,7 +9,6 @@ export default class ListView extends Component {
   ref = React.createRef();
 
   registerFocus = (event) => {
-    // event.stopPropagation();
     this.setState({ focusFirstItem: false });
   }
 

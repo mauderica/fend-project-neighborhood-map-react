@@ -13,17 +13,12 @@ export default class ListItem extends Component {
         }
     }
 
-    // onListItemFocus = (event) => {
-    //     event.stopPropagation();
-    // }
-
     focusListItem = () => {
         this.ref.current.focus();
     }
 
     onListItemSelect = (event) => {
         event.stopPropagation();
-        // this.focusListItem();
         let location = this.props.location;
         this.props.onLocSelect(location, 'list-item');
     }
@@ -50,7 +45,6 @@ export default class ListItem extends Component {
                 role="menuitemradio"
                 aria-checked={isItemSelected}
                 className={className}
-                // onFocus={(event) => this.onListItemFocus(event)}
                 onKeyUp={(event) => this.passFocusUp(event)}
                 onKeyPress={(event) => this.onListItemSelect(event)}
                 onClick={(event) => this.onListItemSelect(event)}>
