@@ -64,6 +64,7 @@
 /* Resource consulted: https://www.w3schools.com/howto/howto_js_sidenav.asp */
 
 .sidebar {
+  visibility: hidden;
   background-color: black;
   color: lightgray;
   height: calc(100vh - 20px) !important; /* minus padding-top */
@@ -78,6 +79,7 @@
 }
 
 .sidebar-open {
+  visibility: visible;
   left: 0;
   transition: 0.5s;
 }

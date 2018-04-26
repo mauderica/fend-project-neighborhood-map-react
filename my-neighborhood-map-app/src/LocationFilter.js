@@ -1,15 +1,31 @@
+// Resources consulted: https://reactjs.org/docs/refs-and-the-dom.html
+
 import React, { Component } from 'react';
 
 export default class LocationFilter extends Component {
+    ref = React.createRef();
+
+    componentDidUpdate(prevProps, prevState) {
+        // IF the sidebar was closed and now it is opened
+        if (this.props.focusSelect === true && prevProps.focusSelect === false) {
+            this.ref.current.focus();
+        }
+    }
+
+    passFocusUp = (event) => {
+        if (event.key === 'Escape') {
+            this.props.passFocusUpToBtn();
+        }
+    }
 
     render() {
         return (
             <div className="location-filter">
-                {/* <input type="text" placeholder="Filter locations by..."
-                    value={this.state.query}
-                    onChange={(event) => this.updateQuery(event.target.value)} /> */}
                 <select
+                    ref={this.ref}
+                    aria-label="dining-categories"
                     value={this.props.selectedCategory}
+                    onKeyUp={(event) => this.passFocusUp(event)}
                     onChange={(event) => this.props.onSelectFilter(event.target.value)} >
                     <option value="none-disabled" disabled>What do you fancy?</option>
                     {

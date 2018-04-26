@@ -1,5 +1,3 @@
-// Resources consulted:
-
 import React, { Component } from 'react';
 import './App.css';
 import LocationFilter from './LocationFilter';
@@ -8,6 +6,7 @@ import MapContainer from './MapContainer';
 
 export default class App extends Component {
   state = {
+    focusSelect: false,
     sidebarIsOpen: false,
     selectedCategory: 'none-disabled',
     categories: [
@@ -77,6 +76,12 @@ export default class App extends Component {
     ],
   }
 
+  refBtn = React.createRef();
+
+  componentDidMount() {
+    this.refBtn.current.focus();
+  }
+
   updateCategory = (userInput) => {
     this.setState({ selectedCategory: userInput });
   }
@@ -105,34 +110,37 @@ export default class App extends Component {
   toggleOpenSidebar = () => {
     if (this.state.sidebarIsOpen) {
       this.setState({ sidebarIsOpen: false });
+      this.setState({ focusSelect: false });
     } else {
       this.setState({ sidebarIsOpen: true });
+      this.setState({ focusSelect: true });
     }
   }
 
-  render() {
+  setFocus = () => {
+    this.refBtn.current.focus();
+  }
 
+  render() {
     let sidebarIsOpen = this.state.sidebarIsOpen;
     let sidebarClass = (sidebarIsOpen) ?
-      "sidebar container sidebar-open" :
-      "sidebar container";
+      "sidebar container sidebar-open" : "sidebar container";
     let mainContentClass = (sidebarIsOpen) ?
-      "main-content-pushed" :
-      "main-content-default";
+      "main-content-pushed" : "main-content-default";
     let btnClass = (sidebarIsOpen) ?
-      "btn-container change" :
-      "btn-container";
+      "btn-container change" : "btn-container";
     let headerClass = (sidebarIsOpen) ?
-      "App-title-hide" :
-      "";
+      "App-title-hide" : "";
 
     return (
       <div className="App">
-        <div className={sidebarClass}>
+        <div role="menu" className={sidebarClass}>
           <h2 className="sidebar-title">Munchin' Categories</h2>
           <LocationFilter
+            focusSelect={this.state.focusSelect}
             categories={this.state.categories}
             selectedCategory={this.state.selectedCategory}
+            passFocusUpToBtn={() => this.setFocus()}
             onSelectFilter={(userInput) => this.updateCategory(userInput)}
           />
           <ListView
@@ -140,12 +148,21 @@ export default class App extends Component {
             locations={this.state.locations}
             selectedLoc={this.state.selectedLoc}
             selector={this.state.locSelectedFrom}
+            passFocusUpToBtn={() => this.setFocus()}
             onLocSelect={(location, selector) => this.updateSelection(location, selector)}
           />
         </div>
         <div className={mainContentClass}>
           <header className="App-header container">
-            <div className={btnClass} onClick={() => this.toggleOpenSidebar()}>
+            <div
+              ref={this.refBtn}
+              role="button"
+              aria-haspopup="true"
+              aria-expanded={sidebarIsOpen}
+              tabIndex="0"
+              className={btnClass}
+              onKeyPress={() => this.toggleOpenSidebar()}
+              onClick={() => this.toggleOpenSidebar()}>
               <div className="bar1"></div>
               <div className="bar2"></div>
               <div className="bar3"></div>
