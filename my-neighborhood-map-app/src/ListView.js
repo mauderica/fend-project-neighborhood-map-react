@@ -9,7 +9,6 @@ export default class ListView extends Component {
   ref = React.createRef();
 
   registerFocus = (event) => {
-    event.stopPropagation();
     this.setState({ focusFirstItem: false });
   }
 
@@ -49,7 +48,8 @@ export default class ListView extends Component {
         className="list-wrapper"
         onFocus={(event) => this.registerFocus(event)}
         onKeyUp={(event) => this.passFocusUp(event)}
-        onKeyPress={(event) => this.enterList(event)}>
+        onKeyPress={(event) => this.enterList(event)}
+      >
         <ul>
           {showingLocations.map((location, index) => (
             (location.categories.includes(selectedCategory) ||

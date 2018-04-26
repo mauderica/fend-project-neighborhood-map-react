@@ -6,8 +6,8 @@ export default class LocationFilter extends Component {
     ref = React.createRef();
 
     componentDidUpdate(prevProps, prevState) {
-        // IF the sidebar was closed and now it is opened
-        if (this.props.focusSelect === true && prevProps.focusSelect === false) {
+        if ((this.props.sidebarIsOpen === true && prevProps.sidebarIsOpen === false)
+            || (this.props.passFocusToSelect === true && prevProps.passFocusToSelect === false)) {
             this.ref.current.focus();
         }
     }

@@ -6,8 +6,8 @@ import MapContainer from './MapContainer';
 
 export default class App extends Component {
   state = {
-    focusSelect: false,
     sidebarIsOpen: false,
+    passFocusToSelect: false,
     selectedCategory: 'none-disabled',
     categories: [
       'Breakfast',
@@ -79,7 +79,7 @@ export default class App extends Component {
   refBtn = React.createRef();
 
   componentDidMount() {
-    this.refBtn.current.focus();
+    this.setFocus();
   }
 
   updateCategory = (userInput) => {
@@ -94,6 +94,9 @@ export default class App extends Component {
       this.setState({ locSelectedFrom: selector });
       if (location !== {} && selector !== '') {
         this.showInfoWindow();
+        if(this.state.sidebarIsOpen === false) {
+          this.toggleOpenSidebar();
+        }
       }
     }
   }
@@ -110,15 +113,23 @@ export default class App extends Component {
   toggleOpenSidebar = () => {
     if (this.state.sidebarIsOpen) {
       this.setState({ sidebarIsOpen: false });
-      this.setState({ focusSelect: false });
     } else {
       this.setState({ sidebarIsOpen: true });
-      this.setState({ focusSelect: true });
     }
   }
 
   setFocus = () => {
     this.refBtn.current.focus();
+  }
+
+  passFocusToSelect = (event) => {
+    if(event.key === 'ArrowLeft') {
+      this.setState({ passFocusToSelect: true });
+    }
+  }
+
+  registerBtnFocus = (event) => {
+    this.setState({ passFocusToSelect: false });
   }
 
   render() {
@@ -137,7 +148,8 @@ export default class App extends Component {
         <div role="menu" className={sidebarClass}>
           <h2 className="sidebar-title">Munchin' Categories</h2>
           <LocationFilter
-            focusSelect={this.state.focusSelect}
+            passFocusToSelect={this.state.passFocusToSelect}
+            sidebarIsOpen={this.state.sidebarIsOpen}
             categories={this.state.categories}
             selectedCategory={this.state.selectedCategory}
             passFocusUpToBtn={() => this.setFocus()}
@@ -161,6 +173,8 @@ export default class App extends Component {
               aria-expanded={sidebarIsOpen}
               tabIndex="0"
               className={btnClass}
+              onFocus={(event) => this.registerBtnFocus(event)}
+              onKeyUp={(event) => this.passFocusToSelect(event)}
               onKeyPress={() => this.toggleOpenSidebar()}
               onClick={() => this.toggleOpenSidebar()}>
               <div className="bar1"></div>

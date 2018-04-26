@@ -13,21 +13,12 @@ export default class ListItem extends Component {
         }
     }
 
-    onListItemFocus = (event) => {
-        event.stopPropagation();
-        // let itWorked = event.isPropagationStopped();
-        // console.log('event propogation from list item was stopped: ', itWorked);
-    }
-
     focusListItem = () => {
-        // console.log('Item index is: ', this.props.index);
         this.ref.current.focus();
     }
 
     onListItemSelect = (event) => {
-        // console.log('Key code: ', event.key);
         event.stopPropagation();
-        this.focusListItem();
         let location = this.props.location;
         this.props.onLocSelect(location, 'list-item');
     }
@@ -44,7 +35,7 @@ export default class ListItem extends Component {
     }
 
     render() {
-        let isItemSelected = (this.props.location === this.props.selectedLoc); // && this.props.selector === 'list-item'
+        let isItemSelected = (this.props.location === this.props.selectedLoc);
         let className = (isItemSelected) ? 'li-selected' : '';
 
         return (
@@ -54,7 +45,6 @@ export default class ListItem extends Component {
                 role="menuitemradio"
                 aria-checked={isItemSelected}
                 className={className}
-                onFocus={(event) => this.onListItemFocus(event)}
                 onKeyUp={(event) => this.passFocusUp(event)}
                 onKeyPress={(event) => this.onListItemSelect(event)}
                 onClick={(event) => this.onListItemSelect(event)}>
