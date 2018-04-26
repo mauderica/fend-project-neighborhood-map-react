@@ -9,19 +9,19 @@
 
 ## Instructions For Set-Up
 
-To get started:
+**To get started**:
 * Download all project files
 * Go to a command line terminal at the project's root directory, and from there:
     * Install all project dependencies with `npm install`
     * Start the development server with `npm start`
 
-To enable location data fetching from the Foursquare API:
+**To enable location data fetching from the Foursquare API**:
 * Setup a developer account with [Foursquare Developers](https://developer.foursquare.com/docs/api/getting-started)
 * Follow the steps at the link above to obtain your own **client ID** and **secret key**
 * Follow the instructions in the file [credentials_example.js](credentials_example.js)
 * Save and restart the development server with `npm start`
 
-To test the offline-first service worker locally:
+**To test the offline-first service worker locally**:
 * Build the application - using `npm run build`
 * Run a simple http server from your build directory, and make sure that:
     * `index.html` is served, and
