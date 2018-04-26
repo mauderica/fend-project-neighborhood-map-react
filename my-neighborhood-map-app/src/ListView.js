@@ -2,27 +2,26 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 
 export default class ListView extends Component {
-  // state = {
-  //   focusFirstItem: false,
-  // }
+  state = {
+    focusFirstItem: false,
+  }
 
   ref = React.createRef();
 
-  // registerFocus = (event) => {
-  //   event.stopPropagation();
-  //   this.setState({ focusFirstItem: false });
-  // }
+  registerFocus = (event) => {
+    // event.stopPropagation();
+    this.setState({ focusFirstItem: false });
+  }
 
-  // enterList = (event) => {
-  //   this.setState({ focusFirstItem: true });
-  // }
+  enterList = (event) => {
+    this.setState({ focusFirstItem: true });
+  }
 
   // setFocus = () => {
   //   this.ref.current.focus();
   // }
 
   passFocusUp = (event) => {
-    // stop propagation here?
     if (event.key === 'Escape') {
       this.props.passFocusUpToBtn();
     }
@@ -48,9 +47,9 @@ export default class ListView extends Component {
         role="menu"
         aria-label="dining location options"
         className="list-wrapper"
-        // onFocus={(event) => this.registerFocus(event)}
+        onFocus={(event) => this.registerFocus(event)}
         onKeyUp={(event) => this.passFocusUp(event)}
-        // onKeyPress={(event) => this.enterList(event)}
+        onKeyPress={(event) => this.enterList(event)}
       >
         <ul>
           {showingLocations.map((location, index) => (
@@ -61,7 +60,7 @@ export default class ListView extends Component {
             (<ListItem
               key={index}
               index={index}
-              // focusFirstItem={this.state.focusFirstItem}
+              focusFirstItem={this.state.focusFirstItem}
               // passFocusUp={() => this.setFocus()}
               location={location}
               selectedLoc={this.props.selectedLoc}

@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import LocationDetails from './LocationDetails';
 
 export default class ListItem extends Component {
-    // ref = React.createRef();
+    ref = React.createRef();
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     // IF the dining location options menu was entered && this is the first list item
-    //     if (this.props.index === 0 &&
-    //         this.props.focusFirstItem === true &&
-    //         prevProps.focusFirstItem === false) {
-    //         this.focusListItem();
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        // IF the dining location options menu was entered && this is the first list item
+        if (this.props.index === 0 &&
+            this.props.focusFirstItem === true &&
+            prevProps.focusFirstItem === false) {
+            this.focusListItem();
+        }
+    }
 
     // onListItemFocus = (event) => {
     //     event.stopPropagation();
     // }
 
-    // focusListItem = () => {
-    //     this.ref.current.focus();
-    // }
+    focusListItem = () => {
+        this.ref.current.focus();
+    }
 
     onListItemSelect = (event) => {
         // event.stopPropagation();
