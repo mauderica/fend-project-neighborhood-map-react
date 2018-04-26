@@ -24,8 +24,8 @@ To enable location data fetching from the Foursquare API:
 To test the offline-first service worker locally:
 * Build the application - using `npm run build`
 * Run a simple http server from your build directory, and make sure that:
-    * index.html is served, and
-    * Requests to static paths like /static/js/main.<hash>.js are served with the contents of the /static/js/main.<hash>.js file. (For more details see: [create-react-app deployment instructions](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment))
+    * `index.html` is served, and
+    * Requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file. (For more details see: [create-react-app deployment instructions](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment))
 * **Important Note**: The service worker will _not_ work unless the application is run from the build directory.
 
 ## Dependencies
