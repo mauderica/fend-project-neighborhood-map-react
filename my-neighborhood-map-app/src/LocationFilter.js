@@ -5,17 +5,9 @@ import React, { Component } from 'react';
 export default class LocationFilter extends Component {
     ref = React.createRef();
 
-    // componentDidMount() {
-    //     this.ref.current.focus();
-    //     // console.log('The ref to <select>: ', this.ref.current);
-    // }
-
     componentDidUpdate(prevProps, prevState) {
-        // IF the sidebar was closed and now it is opened
-        // if (this.props.focusSelect === true && prevProps.focusSelect === false) {
-        if (this.props.sidebarIsOpen === true && prevProps.sidebarIsOpen === false) {
-            // console.log('componentDidUpdate() for <select>');
-            // console.log('The ref to <select> in componentDidUpdate: ', this.ref.current);
+        if ((this.props.sidebarIsOpen === true && prevProps.sidebarIsOpen === false)
+            || (this.props.passFocusToSelect === true && prevProps.passFocusToSelect === false)) {
             this.ref.current.focus();
         }
     }

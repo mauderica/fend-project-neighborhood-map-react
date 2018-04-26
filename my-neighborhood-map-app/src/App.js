@@ -7,6 +7,7 @@ import MapContainer from './MapContainer';
 export default class App extends Component {
   state = {
     sidebarIsOpen: false,
+    passFocusToSelect: false,
     selectedCategory: 'none-disabled',
     categories: [
       'Breakfast',
@@ -121,6 +122,16 @@ export default class App extends Component {
     this.refBtn.current.focus();
   }
 
+  passFocusToSelect = (event) => {
+    if(event.key === 'ArrowLeft') {
+      this.setState({ passFocusToSelect: true });
+    }
+  }
+
+  registerBtnFocus = (event) => {
+    this.setState({ passFocusToSelect: false });
+  }
+
   render() {
     let sidebarIsOpen = this.state.sidebarIsOpen;
     let sidebarClass = (sidebarIsOpen) ?
@@ -137,6 +148,7 @@ export default class App extends Component {
         <div role="menu" className={sidebarClass}>
           <h2 className="sidebar-title">Munchin' Categories</h2>
           <LocationFilter
+            passFocusToSelect={this.state.passFocusToSelect}
             sidebarIsOpen={this.state.sidebarIsOpen}
             categories={this.state.categories}
             selectedCategory={this.state.selectedCategory}
@@ -161,6 +173,8 @@ export default class App extends Component {
               aria-expanded={sidebarIsOpen}
               tabIndex="0"
               className={btnClass}
+              onFocus={(event) => this.registerBtnFocus(event)}
+              onKeyUp={(event) => this.passFocusToSelect(event)}
               onKeyPress={() => this.toggleOpenSidebar()}
               onClick={() => this.toggleOpenSidebar()}>
               <div className="bar1"></div>
