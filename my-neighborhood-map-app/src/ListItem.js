@@ -28,16 +28,16 @@ export default class ListItem extends Component {
         this.props.onLocSelect(location, 'list-item');
     }
 
-    // passFocusUp = (event) => {
-    //     event.stopPropagation();
-    //     if(event.key === 'Escape') {
-    //         if(this.props.location === this.props.selectedLoc) {
-    //             this.onListItemSelect(event);
-    //         } else {
-    //             this.props.passFocusUp();
-    //         }
-    //     }
-    // }
+    passFocusUp = (event) => {
+        event.stopPropagation();
+        if(event.key === 'Escape') {
+            if(this.props.location === this.props.selectedLoc) {
+                this.onListItemSelect(event);
+            } else {
+                this.props.passFocusUp();
+            }
+        }
+    }
 
     render() {
         let isItemSelected = (this.props.location === this.props.selectedLoc);
@@ -51,7 +51,7 @@ export default class ListItem extends Component {
                 aria-checked={isItemSelected}
                 className={className}
                 // onFocus={(event) => this.onListItemFocus(event)}
-                // onKeyUp={(event) => this.passFocusUp(event)}
+                onKeyUp={(event) => this.passFocusUp(event)}
                 onKeyPress={(event) => this.onListItemSelect(event)}
                 onClick={(event) => this.onListItemSelect(event)}>
                 <p className="list-location-name">{this.props.location.name}</p>

@@ -17,9 +17,9 @@ export default class ListView extends Component {
     this.setState({ focusFirstItem: true });
   }
 
-  // setFocus = () => {
-  //   this.ref.current.focus();
-  // }
+  setFocus = () => {
+    this.ref.current.focus();
+  }
 
   passFocusUp = (event) => {
     if (event.key === 'Escape') {
@@ -61,7 +61,7 @@ export default class ListView extends Component {
               key={index}
               index={index}
               focusFirstItem={this.state.focusFirstItem}
-              // passFocusUp={() => this.setFocus()}
+              passFocusUp={() => this.setFocus()}
               location={location}
               selectedLoc={this.props.selectedLoc}
               selector={this.props.selector}
