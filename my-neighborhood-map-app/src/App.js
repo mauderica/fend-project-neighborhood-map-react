@@ -78,7 +78,6 @@ export default class App extends Component {
   refBtn = React.createRef();
 
   componentDidMount() {
-    // this.refBtn.current.focus();
     this.setFocus();
   }
 
@@ -94,9 +93,9 @@ export default class App extends Component {
       this.setState({ locSelectedFrom: selector });
       if (location !== {} && selector !== '') {
         this.showInfoWindow();
-        // if(this.state.sidebarIsOpen === false) {
-        //   this.toggleOpenSidebar();
-        // }
+        if(this.state.sidebarIsOpen === false) {
+          this.toggleOpenSidebar();
+        }
       }
     }
   }
