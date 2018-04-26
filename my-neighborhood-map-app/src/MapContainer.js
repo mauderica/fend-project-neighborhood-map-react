@@ -55,7 +55,7 @@ export class MapContainer extends Component {
             "map-wrapper";
 
         return (
-            <div className={mapWrapperClass}>
+            <div className={mapWrapperClass} role="application" aria-roledescription="Google Maps">
                 <Map google={this.props.google}
                     style={style}
                     initialCenter={{
