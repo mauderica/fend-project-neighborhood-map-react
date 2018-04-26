@@ -22,7 +22,7 @@ export default class ListItem extends Component {
     }
 
     onListItemSelect = (event) => {
-        // event.stopPropagation();
+        event.stopPropagation();
         // this.focusListItem();
         let location = this.props.location;
         this.props.onLocSelect(location, 'list-item');
@@ -52,7 +52,7 @@ export default class ListItem extends Component {
                 className={className}
                 // onFocus={(event) => this.onListItemFocus(event)}
                 // onKeyUp={(event) => this.passFocusUp(event)}
-                // onKeyPress={(event) => this.onListItemSelect(event)}
+                onKeyPress={(event) => this.onListItemSelect(event)}
                 onClick={(event) => this.onListItemSelect(event)}>
                 <p className="list-location-name">{this.props.location.name}</p>
                 {
