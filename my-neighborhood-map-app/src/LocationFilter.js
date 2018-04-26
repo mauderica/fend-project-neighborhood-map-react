@@ -20,11 +20,11 @@ export default class LocationFilter extends Component {
         }
     }
 
-    // passFocusUp = (event) => {
-    //     if (event.key === 'Escape') {
-    //         this.props.passFocusUpToBtn();
-    //     }
-    // }
+    passFocusUp = (event) => {
+        if (event.key === 'Escape') {
+            this.props.passFocusUpToBtn();
+        }
+    }
 
     render() {
         return (
@@ -33,7 +33,7 @@ export default class LocationFilter extends Component {
                     ref={this.ref}
                     aria-label="dining-categories"
                     value={this.props.selectedCategory}
-                    // onKeyUp={(event) => this.passFocusUp(event)}
+                    onKeyUp={(event) => this.passFocusUp(event)}
                     onChange={(event) => this.props.onSelectFilter(event.target.value)} >
                     <option value="none-disabled" disabled>What do you fancy?</option>
                     {

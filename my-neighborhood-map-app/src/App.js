@@ -6,7 +6,6 @@ import MapContainer from './MapContainer';
 
 export default class App extends Component {
   state = {
-    // focusSelect: false,
     sidebarIsOpen: false,
     selectedCategory: 'none-disabled',
     categories: [
@@ -79,7 +78,8 @@ export default class App extends Component {
   refBtn = React.createRef();
 
   componentDidMount() {
-    this.refBtn.current.focus();
+    // this.refBtn.current.focus();
+    this.setFocus();
   }
 
   updateCategory = (userInput) => {
@@ -113,16 +113,14 @@ export default class App extends Component {
   toggleOpenSidebar = () => {
     if (this.state.sidebarIsOpen) {
       this.setState({ sidebarIsOpen: false });
-      // this.setState({ focusSelect: false });
     } else {
       this.setState({ sidebarIsOpen: true });
-      // this.setState({ focusSelect: true });
     }
   }
 
-  // setFocus = () => {
-  //   this.refBtn.current.focus();
-  // }
+  setFocus = () => {
+    this.refBtn.current.focus();
+  }
 
   render() {
     let sidebarIsOpen = this.state.sidebarIsOpen;
@@ -140,11 +138,10 @@ export default class App extends Component {
         <div role="menu" className={sidebarClass}>
           <h2 className="sidebar-title">Munchin' Categories</h2>
           <LocationFilter
-            // focusSelect={this.state.focusSelect}
             sidebarIsOpen={this.state.sidebarIsOpen}
             categories={this.state.categories}
             selectedCategory={this.state.selectedCategory}
-            // passFocusUpToBtn={() => this.setFocus()}
+            passFocusUpToBtn={() => this.setFocus()}
             onSelectFilter={(userInput) => this.updateCategory(userInput)}
           />
           <ListView
