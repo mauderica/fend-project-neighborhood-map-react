@@ -21,12 +21,12 @@ export default class ListView extends Component {
   //   this.ref.current.focus();
   // }
 
-  // passFocusUp = (event) => {
+  passFocusUp = (event) => {
     // stop propagation here?
-  //   if (event.key === 'Escape') {
-  //     this.props.passFocusUpToBtn();
-  //   }
-  // }
+    if (event.key === 'Escape') {
+      this.props.passFocusUpToBtn();
+    }
+  }
 
   render() {
 
@@ -49,7 +49,7 @@ export default class ListView extends Component {
         aria-label="dining location options"
         className="list-wrapper"
         // onFocus={(event) => this.registerFocus(event)}
-        // onKeyUp={(event) => this.passFocusUp(event)}
+        onKeyUp={(event) => this.passFocusUp(event)}
         // onKeyPress={(event) => this.enterList(event)}
       >
         <ul>

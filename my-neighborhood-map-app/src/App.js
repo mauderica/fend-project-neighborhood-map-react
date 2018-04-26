@@ -149,7 +149,7 @@ export default class App extends Component {
             locations={this.state.locations}
             selectedLoc={this.state.selectedLoc}
             selector={this.state.locSelectedFrom}
-            // passFocusUpToBtn={() => this.setFocus()}
+            passFocusUpToBtn={() => this.setFocus()}
             onLocSelect={(location, selector) => this.updateSelection(location, selector)}
           />
         </div>
