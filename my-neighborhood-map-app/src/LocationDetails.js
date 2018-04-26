@@ -23,9 +23,7 @@ export default class LocationDetails extends Component {
             v: "20180323",
         };
 
-        // fetch("http://localhost:3000/venue.json")
-        // TODO: https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-        fetch(`${venueEndpoint}?${new URLSearchParams(params)}`) // { method: 'GET' }
+        fetch(`${venueEndpoint}?${new URLSearchParams(params)}`)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -46,7 +44,6 @@ export default class LocationDetails extends Component {
     render() {
         const { error, isLoaded, venueDetails } = this.state;
         if (error) {
-            // return <div>Error: {error.message}</div>;
             return (
                 <div className="location-details">
                     <div>Oops! Location details could not be loaded.</div>
@@ -62,9 +59,7 @@ export default class LocationDetails extends Component {
             let venueRating = (venueDetails.rating !== undefined) ? venueDetails.rating : "None currently";
             return (
                 <div className="location-details">
-                    {/* <div>{venueDetails.location.formattedAddress}</div> */}
                     <div>{venueDetails.contact.formattedPhone}</div>
-                    {/* <div>{venueDetails.url}</div> */}
                     <div>Price range: {venueDetails.price.currency}</div>
                     <div>Rating: {venueRating}</div>
                     <div className="details-foursquare">Details provided by Foursquare</div>
